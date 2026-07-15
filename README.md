@@ -492,100 +492,10 @@ All API endpoints (except login/register) require JWT authentication via `Author
 | `POST` | `/api/comments/task/{task_id}` | ✅ | Add task comment |
 | `GET` | `/api/admin/` | ✅ | Admin-only operations |
 
-### 📝 Example API Response
-
-```json
-// GET /api/dashboard/stats (Admin response)
-{
-  "total_users": 7,
-  "active_users": 5,
-  "total_projects": 6,
-  "completed_projects": 2,
-  "overdue_tasks": 3,
-  "open_bugs": 4,
-  "charts": {
-    "task_progress": [
-      { "name": "Todo", "value": 3 },
-      { "name": "In Progress", "value": 4 },
-      { "name": "Review", "value": 2 },
-      { "name": "Completed", "value": 2 }
-    ]
-  }
-}
-```
 
 <br/>
 
 ---
-
-## 🗄️ Database Schema
-
-### Entity Relationship Diagram
-
-```mermaid
-erDiagram
-    roles ||--o{ users : "has"
-    users ||--o{ projects : "created by"
-    users ||--o{ tasks : "assigned to"
-    users ||--o{ bug_reports : "reported by"
-    users ||--o{ notifications : "receives"
-    users ||--o{ activity_logs : "generates"
-    users ||--o{ project_members : "member of"
-    projects ||--o{ tasks : "contains"
-    projects ||--o{ bug_reports : "has"
-    projects ||--o{ project_members : "has members"
-    tasks ||--o{ task_comments : "has"
-    bug_reports ||--o{ bug_comments : "has"
-
-    roles {
-        int id PK
-        string name UNIQUE
-        string description
-    }
-
-    users {
-        int id PK
-        string email UNIQUE
-        string username UNIQUE
-        string hashed_password
-        int role_id FK
-        string department
-        string designation
-    }
-
-    projects {
-        int id PK
-        string name
-        string status
-        string priority
-        int progress
-        int created_by FK
-        int manager_id FK
-        datetime deadline
-    }
-
-    tasks {
-        int id PK
-        string title
-        string status
-        string priority
-        int project_id FK
-        int assignee_id FK
-        int created_by FK
-        datetime deadline
-        int board_order
-    }
-
-    bug_reports {
-        int id PK
-        string title
-        string severity
-        string status
-        int project_id FK
-        int reported_by FK
-        int assigned_to FK
-    }
-```
 
 ### Tables Overview
 
@@ -734,24 +644,6 @@ docker-compose up -d
 
 ---
 
-## 📊 Performance
-
-| Metric | Value |
-|--------|-------|
-| **API Response Time (avg)** | < 80ms |
-| **Database Queries per Page** | 3–8 |
-| **Bundle Size (gzipped)** | ~200 KB |
-| **Frontend Pages** | 19 |
-| **Backend Routes** | 40+ |
-| **Database Tables** | 10 |
-
-<br/>
-
----
-
-## 🎓 Resume Description
-
-> **DevTrack AI** is a production-ready enterprise SaaS platform built with **React 19**, **FastAPI**, and **MySQL**. Features include AI-powered project management with role-specific dashboards (Admin/Manager/Developer), Kanban task boards with drag-and-drop, real-time JWT-authenticated REST APIs, interactive Recharts data visualizations, and responsive glassmorphism UI with Framer Motion animations. Integrated Google Gemini AI for automated task descriptions, sprint summaries, and progress reports with graceful mock fallback. Demonstrates full-stack development expertise including RESTful API design, database modeling, authentication/authorization, state management, and modern UI/UX patterns. Deployed via Docker, Vercel, and Render with CI/CD-ready configuration.
 
 ### 💼 Skills Demonstrated
 - **Frontend:** React 19, Hooks, Context API, Vite, Tailwind CSS, Recharts, Framer Motion
@@ -842,7 +734,7 @@ copies or substantial portions of the Software.
 <div align="center">
   <br/>
   <p>
-    <strong>DevTrack AI</strong> — Built with ❤️ for developers, by developers
+    <strong>DevTrack AI</strong> — Built with ❤️
   </p>
   <p>
     <sub>
