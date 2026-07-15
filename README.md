@@ -32,7 +32,6 @@
 - [Deployment](#deployment)
 - [Project Structure](#project-structure)
 - [Performance](#performance)
-- [Resume Description](#resume-description)
 - [Roadmap](#roadmap)
 - [Contributing](#contributing)
 - [License](#license)
